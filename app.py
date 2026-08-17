@@ -5,14 +5,15 @@ from styles import CSS, JS, EXAMPLES
 from dotenv import load_dotenv
 import gradio as gr
 import os
+import streamlit as st
 
 load_dotenv(override=True)
 
 
 
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
-
-gemini = OpenAI(base_url=GEMINI_BASE_URL, api_key=GOOGLE_API_KEY)
+google_api_key = os.environ.get("GOOGLE_API_KEY") or st.secrets["GOOGLE_API_KEY"]
+gemini = OpenAI(base_url=GEMINI_BASE_URL, api_key=google_api_key)
 MODEL_NAME="gemini-2.5-flash-lite"
 openai = gemini
 
